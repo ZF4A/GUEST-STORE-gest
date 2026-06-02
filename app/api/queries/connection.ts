@@ -10,7 +10,7 @@ if (isPostgres) {
   const { default: postgres } = await import("postgres");
   const { drizzle } = await import("drizzle-orm/postgres-js");
   // prepare: false required for Supabase Transaction Pooler (PgBouncer)
-  const client = postgres(url, { prepare: false });
+  const client = postgres(url, { prepare: false, ssl: "require" });
   _db = drizzle(client, { schema }) as any;
 } else {
   const { default: Database } = await import("better-sqlite3");
