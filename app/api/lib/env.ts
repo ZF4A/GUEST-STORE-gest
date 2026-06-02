@@ -9,7 +9,7 @@ function required(name: string): string {
 }
 
 export const env = {
-  appId: required("APP_ID"),
+  appId: process.env.APP_ID ?? "gs-gestion-app",
   appSecret: required("APP_SECRET"),
   isProduction: process.env.NODE_ENV === "production",
   databaseUrl: required("DATABASE_URL"),
