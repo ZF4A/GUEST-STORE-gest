@@ -230,7 +230,6 @@ const translations: Record<string, Record<Lang, string>> = {
   "Password changed success": { EN: "Password updated successfully", FR: "Mot de passe mis à jour avec succès" },
   "Wrong current password": { EN: "Current password is incorrect", FR: "Mot de passe actuel incorrect" },
   "Role": { EN: "Role", FR: "Rôle" },
-  "All Stores": { EN: "All Stores", FR: "Tous les Magasins" },
 
   // ── Colors / Variants ──
   "Colors": { EN: "Colors", FR: "Couleurs" },
@@ -252,9 +251,6 @@ const translations: Record<string, Record<Lang, string>> = {
     EN: 'Category "{name}" has {count} product(s). Reassign them before deleting.',
     FR: 'La catégorie "{name}" contient {count} produit(s). Réaffectez-les avant de supprimer.',
   },
-  "Yaoundé": { EN: "Yaoundé", FR: "Yaoundé" },
-  "Kribi": { EN: "Kribi", FR: "Kribi" },
-  "Total": { EN: "Total", FR: "Total" },
 };
 
 function detectLang(): Lang {
