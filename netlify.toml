@@ -1,0 +1,18 @@
+[build]
+  base    = "app"
+  command = "npm run build"
+  publish = "dist/public"
+  functions = "../netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["app/api/**", "app/db/**", "app/contracts/**"]
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback — must come AFTER the API config.path handles /api/*
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
