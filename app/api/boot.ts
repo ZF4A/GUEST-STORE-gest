@@ -50,6 +50,17 @@ app.post("/api/upload", async (c) => {
   }
 });
 
+// ── Health check ──────────────────────────────────────────────────────────
+app.get("/api/health", async (c) => {
+  try {
+    const { getDb } = await import("./queries/connection") as any;
+    await getDb().execute("SELECT 1");
+    return c.json({ ok: true, db: "connected", env: !!process.env.DATABASE_URL });
+  } catch (err: any) {
+    return c.json({ ok: false, error: err?.message ?? String(err), env: !!process.env.DATABASE_URL }, 500);
+  }
+});
+
 // ── tRPC ───────────────────────────────────────────────────────────────────
 app.use("/api/trpc/*", async (c) => {
   return fetchRequestHandler({

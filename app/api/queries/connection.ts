@@ -1,10 +1,15 @@
 import { env } from "../lib/env";
 import * as schema from "@db/schema";
-import postgres from "postgres";
-import { drizzle } from "drizzle-orm/postgres-js";
+import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
 
-const client = postgres(env.databaseUrl, { prepare: false, ssl: "require" });
-const _db = drizzle(client, { schema });
+const pool = new Pool({
+  connectionString: env.databaseUrl,
+  ssl: { rejectUnauthorized: false },
+  max: 3,
+});
+
+const _db = drizzle(pool, { schema });
 
 export function getDb() {
   return _db;
